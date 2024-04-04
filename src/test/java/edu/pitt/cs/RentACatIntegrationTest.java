@@ -106,8 +106,8 @@ public class RentACatIntegrationTest {
 	public void testGetCatNullNumCats0() throws Exception {
 		Method getCat = r.getClass().getDeclaredMethod("getCat", int.class);
 		getCat.setAccessible(true);
-		Cat result = (Cat) getCat.invoke(r, 2);
-		assertNull(result);
+		Cat rv = (Cat) getCat.invoke(r, 2);
+		assertNull(rv);
 		String correct = "Invalid cat ID." + newline;
 		assertEquals(correct, out.toString());
 	}
@@ -135,9 +135,9 @@ public class RentACatIntegrationTest {
 
 		Method getCat = r.getClass().getDeclaredMethod("getCat", int.class);
 		getCat.setAccessible(true);
-		Cat result = (Cat) getCat.invoke(r, 2);
-		assertNotNull(result);
-		assertEquals(2, result.getId());
+		Cat rv = (Cat) getCat.invoke(r, 2);
+		assertNotNull(rv);
+		assertEquals(2, rv.getId());
 	}
 
 	/**
@@ -151,8 +151,8 @@ public class RentACatIntegrationTest {
 	 */
 	@Test
 	public void testListCatsNumCats0() {
-		String result = r.listCats();
-		assertEquals("", result);
+		String rv = r.listCats();
+		assertEquals("", rv);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class RentACatIntegrationTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		String result = r.listCats();
-		assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n", result);
+		String rv = r.listCats();
+		assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n", rv);
 	}
 
 	/**
@@ -187,8 +187,8 @@ public class RentACatIntegrationTest {
 	 */
 	@Test
 	public void testRenameFailureNumCats0() {
-		boolean result = r.renameCat(2, "Garfield");
-		assertFalse(result);
+		boolean rv = r.renameCat(2, "Garfield");
+		assertFalse(rv);
 		assertNotEquals("Garfield", c2.getName());
 		String output = "Invalid cat ID." + newline;
 		assertEquals(output, out.toString());
@@ -209,8 +209,8 @@ public class RentACatIntegrationTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		boolean result = r.renameCat(2, "Garfield");
-		assertTrue(result);
+		boolean rv = r.renameCat(2, "Garfield");
+		assertTrue(rv);
 		assertEquals("Garfield", c2.getName());
 	}
 
@@ -230,8 +230,8 @@ public class RentACatIntegrationTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		boolean result = r.rentCat(2);
-		assertTrue(result);
+		boolean rv = r.rentCat(2);
+		assertTrue(rv);
 		assertTrue(c2.getRented());
 		String output = "Old Deuteronomy has been rented." + newline;
 		assertEquals(output, out.toString());
@@ -255,8 +255,8 @@ public class RentACatIntegrationTest {
 		r.addCat(c2);
 		r.addCat(c3);
 		c2.rentCat();
-		boolean result = r.rentCat(2);
-		assertFalse(result);
+		boolean rv = r.rentCat(2);
+		assertFalse(rv);
 		assertTrue(c2.getRented());
 		String output = "Sorry, Old Deuteronomy is not here!" + newline;
 		assertEquals(output, out.toString());
@@ -280,8 +280,8 @@ public class RentACatIntegrationTest {
 		r.addCat(c2);
 		r.addCat(c3);
 		c2.rentCat();
-		boolean result = r.returnCat(2);
-		assertTrue(result);
+		boolean rv = r.returnCat(2);
+		assertTrue(rv);
 		assertFalse(c2.getRented());
 		String output = "Welcome back, Old Deuteronomy!" + newline;
 		assertEquals(output, out.toString());
@@ -303,8 +303,8 @@ public class RentACatIntegrationTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		boolean result = r.returnCat(2);
-		assertFalse(result);
+		boolean rv = r.returnCat(2);
+		assertFalse(rv);
 		assertFalse(c2.getRented());
 		String output = "Old Deuteronomy is already here!" + newline;
 		assertEquals(output, out.toString());

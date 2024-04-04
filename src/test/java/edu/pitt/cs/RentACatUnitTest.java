@@ -106,8 +106,8 @@ public class RentACatUnitTest {
 	public void testGetCatNullNumCats0() throws Exception {
 		Method getCat = r.getClass().getDeclaredMethod("getCat", int.class);
 		getCat.setAccessible(true);
-		Cat rc = (Cat) getCat.invoke(r, 2);
-		assertNull(rc);
+		Cat rv = (Cat) getCat.invoke(r, 2);
+		assertNull(rv);
 		String correct = "Invalid cat ID." + newline;
 		assertEquals(correct, out.toString());
 	}
@@ -135,9 +135,9 @@ public class RentACatUnitTest {
 
 		Method getCat = r.getClass().getDeclaredMethod("getCat", int.class);
 		getCat.setAccessible(true);
-		Cat rc = (Cat) getCat.invoke(r, 2);
-		assertNotNull(rc);
-		assertEquals(2, rc.getId());
+		Cat rv = (Cat) getCat.invoke(r, 2);
+		assertNotNull(rv);
+		assertEquals(2, rv.getId());
 	}
 
 	/**
@@ -151,8 +151,8 @@ public class RentACatUnitTest {
 	 */
 	@Test
 	public void testListCatsNumCats0() {
-		String rc = r.listCats();
-		assertEquals("", rc);
+		String rv = r.listCats();
+		assertEquals("", rv);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class RentACatUnitTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		String rc = r.listCats();
-		assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n", rc);
+		String rv = r.listCats();
+		assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n", rv);
 	}
 
 	/**
@@ -191,8 +191,8 @@ public class RentACatUnitTest {
 	 */
 	@Test
 	public void testRenameFailureNumCats0() {
-		boolean rc = r.renameCat(2, "Garfield");
-		assertFalse(rc);
+		boolean rv = r.renameCat(2, "Garfield");
+		assertFalse(rv);
 		Mockito.verify(c2, never()).renameCat("Garfield");
 		String output = "Invalid cat ID." + newline;
 		assertEquals(output, out.toString());
@@ -217,8 +217,8 @@ public class RentACatUnitTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		boolean rc = r.renameCat(2, "Garfield");
-		assertTrue(rc);
+		boolean rv = r.renameCat(2, "Garfield");
+		assertTrue(rv);
 		Mockito.verify(c2).renameCat("Garfield");
 	}
 
@@ -243,8 +243,8 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 		Mockito.when(c2.getRented()).thenReturn(false);
-		boolean rc = r.rentCat(2);
-		assertTrue(rc);
+		boolean rv = r.rentCat(2);
+		assertTrue(rv);
 		Mockito.verify(c2).rentCat();
 		String output = "Old Deuteronomy has been rented." + newline;
 		assertEquals(output, out.toString());
@@ -272,8 +272,8 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 		Mockito.when(c2.getRented()).thenReturn(true);
-		boolean rc = r.rentCat(2);
-		assertFalse(rc);
+		boolean rv = r.rentCat(2);
+		assertFalse(rv);
 		Mockito.verify(c2, never()).rentCat();
 		String output = "Sorry, Old Deuteronomy is not here!" + newline;
 		assertEquals(output, out.toString());
@@ -301,8 +301,8 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 		Mockito.when(c2.getRented()).thenReturn(true);
-		boolean rc = r.returnCat(2);
-		assertTrue(rc);
+		boolean rv = r.returnCat(2);
+		assertTrue(rv);
 		Mockito.verify(c2).returnCat();
 		String output = "Welcome back, Old Deuteronomy!" + newline;
 		assertEquals(output, out.toString());
@@ -329,8 +329,8 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 		Mockito.when(c2.getRented()).thenReturn(false);
-		boolean rc = r.returnCat(2);
-		assertFalse(rc);
+		boolean rv = r.returnCat(2);
+		assertFalse(rv);
 		Mockito.verify(c2, never()).returnCat();
 		String output = "Old Deuteronomy is already here!" + newline;
 		assertEquals(output, out.toString());

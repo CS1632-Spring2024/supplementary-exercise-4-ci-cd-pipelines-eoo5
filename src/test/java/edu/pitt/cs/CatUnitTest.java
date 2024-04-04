@@ -1,13 +1,14 @@
 package edu.pitt.cs;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
-import org.mockito.*;
+import static org.junit.Assert.*;
+
+//import org.mockito.Mockito;
+//import static org.mockito.Mockito.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CatUnitTest {
@@ -35,7 +36,7 @@ public class CatUnitTest {
 		// Which type is the correct choice for this unit test? I'll leave it up to you.
 		// The answer is in the Unit Testing Part 2 lecture. :)
 		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
-		// TODO: Fill in
+
 	}
 
 	@After
@@ -56,7 +57,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetId() {
-		assertEquals(1, c.getId());
+		int i = c.getId();
+		assertEquals(1, i);
 	}
 
 	/**
@@ -65,12 +67,13 @@ public class CatUnitTest {
 	 * <pre>
 	 * Preconditions: c has been created with ID 1, and name "Jennyanydots".
 	 * Execution steps: Call c.getName().
-	 * Postconditions: Return value is 1.
+	 * Postconditions: Return value is "Jennyanydots".
 	 * </pre>
 	 */
 	@Test
 	public void testGetName() {
-		assertEquals("Jennyanydots", c.getName());
+		String n = c.getName();
+		assertEquals("Jennyanydots", n);
 	}
 
 	/**
@@ -84,7 +87,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetRented() {
-		assertEquals(false, c.getRented());
+		boolean rented = c.getRented();
+		assertFalse(rented);
 	}
 
 	/**
@@ -98,7 +102,9 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testToString() {
-		assertEquals("ID 1. Jennyanydots", c.toString());
+		String actual = c.toString();
+		String expected = "ID 1. Jennyanydots";
+		assertEquals(expected, actual);
 	}
 
 	/**
@@ -114,7 +120,8 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		c.rentCat();
-		assertEquals(true, c.getRented());
+		boolean actual = c.getRented();
+		assertTrue(actual);
 	}
 
 	/**
@@ -130,8 +137,11 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testReturnCat() {
+		c.rentCat();
+
 		c.returnCat();
-		assertEquals(false, c.getRented());
+		boolean actual = c.getRented();
+		assertFalse(actual);
 	}
 
 	/**
@@ -147,8 +157,11 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		c.renameCat("Garfield");
-		assertEquals("Garfield", c.getName());
-		assertEquals("ID 1. Garfield", c.toString());
+		String name = c.getName();
+		String fullName = c.toString();
+		String expected = "ID 1. Garfield";
+		assertEquals("Garfield", name);
+		assertEquals(expected, fullName);
 	}
 
 }
