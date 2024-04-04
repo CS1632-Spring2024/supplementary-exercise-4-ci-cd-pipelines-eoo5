@@ -7,9 +7,6 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
-//import org.mockito.Mockito;
-//import static org.mockito.Mockito.*;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CatUnitTest {
 
@@ -33,7 +30,8 @@ public class CatUnitTest {
 		// your CatImpl implementation.
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using
 		// Mockito.
-		// Which type is the correct choice for this unit test? I'll leave it up to you.
+		// Which type is the correct choice for this unit test? id'll leave it up to
+		// you.
 		// The answer is in the Unit Testing Part 2 lecture. :)
 		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 
@@ -57,8 +55,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetId() {
-		int i = c.getId();
-		assertEquals(1, i);
+		int id = c.getId();
+		assertEquals(1, id);
 	}
 
 	/**
@@ -72,8 +70,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetName() {
-		String n = c.getName();
-		assertEquals("Jennyanydots", n);
+		String name = c.getName();
+		assertEquals("Jennyanydots", name);
 	}
 
 	/**

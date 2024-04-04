@@ -2,28 +2,28 @@ package edu.pitt.cs;
 
 public class CatImpl implements Cat {
 
-	private int _id;
-	private String _name;
-	private boolean _rented;
+	private int id;
+	private String name;
+	private boolean rented;
 
 	public CatImpl(int id, String name) {
-		this._id = id;
-		this._name = name;
-		this._rented = false;
+		this.id = id;
+		this.name = name;
+		this.rented = false;
 	}
 
 	/**
-	 * Rent cat. Simply sets the _rented flag to true.
+	 * Rent cat. Simply sets the rented flag to true.
 	 */
 	public void rentCat() {
-		this._rented = true;
+		this.rented = true;
 	}
 
 	/**
-	 * Return cat. Simply sets the _rented flag to false.
+	 * Return cat. Simply sets the rented flag to false.
 	 */
 	public void returnCat() {
-		this._rented = false;
+		this.rented = false;
 	}
 
 	/**
@@ -32,48 +32,48 @@ public class CatImpl implements Cat {
 	 * @param String name New name of the cat
 	 */
 	public void renameCat(String name) {
-		this._name = name;
+		this.name = name;
 	}
 
 	/**
-	 * Accessor for _name variable. Returns the name of this cat.
+	 * Accessor for name variable. Returns the name of this cat.
 	 * 
 	 * @return String name of cat
 	 */
 
 	public String getName() {
-		return this._name;
+		return this.name;
 	}
 
 	/**
-	 * Accessor for _id variable. Returns the ID of this cat.
+	 * Accessor for id variable. Returns the ID of this cat.
 	 * 
 	 * @return int ID of this cat
 	 */
 
 	public int getId() {
-		return this._id;
+		return this.id;
 	}
 
 	/**
-	 * Accessor for _rented variable. Returns if cat is rented.
+	 * Accessor for rented variable. Returns if cat is rented.
 	 * 
 	 * @return boolean - true if rented, false otherwise
 	 */
 
 	public boolean getRented() {
-		return this._rented;
+		return this.rented;
 	}
 
 	/**
-	 * Returns string version of this cat, in form: "ID *id_num*. *name*" Example
+	 * Returns string version of this cat, in form: "ID *idnum*. *name*" Example
 	 * for cat of ID 1, name Jennyanydots: "ID 1. Jennyanydots"
 	 * 
 	 * @return String string version of cat
 	 */
 
 	public String toString() {
-		String catString = "ID " + this._id + ". " + this._name;
+		String catString = "ID " + this.id + ". " + this.name;
 		return catString;
 	}
 

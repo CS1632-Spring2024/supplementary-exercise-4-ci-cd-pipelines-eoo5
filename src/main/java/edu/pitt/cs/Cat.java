@@ -12,11 +12,11 @@ public interface Cat {
 			case SOLUTION:
 				return new CatSolution(id, name);
 			case MOCK:
-				Cat mocked = Mockito.mock(Cat.class);
-				Mockito.when(mocked.getId()).thenReturn(id);
-				Mockito.when(mocked.getName()).thenReturn(name);
-				Mockito.when(mocked.toString()).thenReturn("ID " + id + ". " + name);
-				return mocked;
+				Cat mockedCat = Mockito.mock(Cat.class);
+				Mockito.when(mockedCat.getId()).thenReturn(id);
+				Mockito.when(mockedCat.getName()).thenReturn(name);
+				Mockito.when(mockedCat.toString()).thenReturn("ID " + id + ". " + name);
+				return mockedCat;
 			default:
 				assert (false);
 				return null;
